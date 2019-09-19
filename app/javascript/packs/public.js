@@ -31,10 +31,10 @@ function main() {
   const React = require('react');
   const ReactDOM = require('react-dom');
   const Rellax = require('rellax');
-  const createHistory = require('history').createBrowserHistory;
+  const { createBrowserHistory } = require('history');
 
   const scrollToDetailedStatus = () => {
-    const history = createHistory();
+    const history = createBrowserHistory();
     const detailedStatuses = document.querySelectorAll('.public-layout .detailed-status');
     const location = history.location;
 
@@ -139,6 +139,15 @@ function main() {
     }
 
     return false;
+  });
+
+  delegate(document, '.blocks-table button.icon-button', 'click', function(e) {
+    e.preventDefault();
+
+    const classList = this.firstElementChild.classList;
+    classList.toggle('fa-chevron-down');
+    classList.toggle('fa-chevron-up');
+    this.parentElement.parentElement.nextElementSibling.classList.toggle('hidden');
   });
 
   delegate(document, '.modal-button', 'click', e => {
