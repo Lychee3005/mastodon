@@ -22,7 +22,6 @@ public/assets
 public/packs
 public/packs-test
 .env
-.env.production
 node_modules/
 build/
 
@@ -35,6 +34,7 @@ config/deploy/*
 # Ignore IDE files
 .vscode/
 .idea/
+.vs/
 
 # Ignore postgres + redis + elasticsearch volume optionally created by docker-compose
 postgres
