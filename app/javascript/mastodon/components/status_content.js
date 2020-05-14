@@ -174,19 +174,20 @@ export default class StatusContent extends React.PureComponent {
   }
   
   setStrike = (content) => {
-    try{
-      let delContents = content.match(/&lt;s&gt;(.)+&lt;\/s&gt;/g);
-      delContents.forEach(p => {
-          let originP = p;
-          p = p.replace("&lt;s&gt;", "<del>");
-          p = p.replace("&lt;/s&gt;", "</del>");
-          content = content.replace(originP, p)
-      });
+    let tc = content;
+    try {
+      let delContent = tc.match(/&lt;s&gt;(.)+&lt;\/s&gt;/g);
+      while(delContent!=null)
+      {
+        tc = tc.replace("&lt;s&gt;", "<del>");
+        tc = tc.replace("&lt;/s&gt;", "</del>");
+        delContent = tc.match(/&lt;s&gt;(.)+&lt;\/s&gt;/g);
+      }
     }
     catch{
       //ignore
     }
-    return content;
+    return tc;
   }
 
   render () {
