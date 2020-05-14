@@ -172,22 +172,6 @@ export default class StatusContent extends React.PureComponent {
   setRef = (c) => {
     this.node = c;
   }
-  
-  setStrike = (content) => {
-    try{
-      let delContents = content.match(/&lt;s&gt;(.)+&lt;\/s&gt;/g);
-      delContents.forEach(p => {
-          let originP = p;
-          p = p.replace("&lt;s&gt;", "<del>");
-          p = p.replace("&lt;/s&gt;", "</del>");
-          content = content.replace(originP, p)
-      });
-    }
-    catch{
-      //ignore
-    }
-    return content;
-  }
 
   render () {
     const { status } = this.props;
@@ -225,9 +209,6 @@ export default class StatusContent extends React.PureComponent {
       </button>
     );
 
-    content = this.setStrike(content);
-    spoilerContent = this.setStrike(spoilerContent);
-    
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
 
