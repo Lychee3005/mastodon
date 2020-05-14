@@ -200,8 +200,8 @@ export default class StatusContent extends React.PureComponent {
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
 
-    let content = { __html: status.get('contentHtml') };
-    let spoilerContent = { __html: status.get('spoilerHtml') };
+    const content = { __html: this.setStrike(status.get('contentHtml')) };
+    const spoilerContent = { __html: this.setStrike(status.get('spoilerHtml')) };
     const directionStyle = { direction: 'ltr' };
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
@@ -224,9 +224,6 @@ export default class StatusContent extends React.PureComponent {
         <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
       </button>
     );
-
-    content = this.setStrike(content);
-    spoilerContent = this.setStrike(spoilerContent);
     
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
