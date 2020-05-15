@@ -176,12 +176,12 @@ export default class StatusContent extends React.PureComponent {
   setStrike = (content) => {
     let tc = content;
     try {
-      let delContent = tc.match(/&lt;s&gt;(.)+&lt;\/s&gt;/g);
+      let delContent = tc.match(/-(.)+-/g);
       while(delContent!=null)
       {
-        tc = tc.replace("&lt;s&gt;", "<del>");
-        tc = tc.replace("&lt;/s&gt;", "</del>");
-        delContent = tc.match(/&lt;s&gt;(.)+&lt;\/s&gt;/g);
+        tc = tc.replace("-", "<del>");
+        tc = tc.replace("-", "</del>");
+        delContent = tc.match(/-(.)+-/g);
       }
     }
     catch{
