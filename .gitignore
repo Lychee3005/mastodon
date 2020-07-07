@@ -17,11 +17,11 @@
 /log/*
 !/log/.keep
 /tmp
-coverage
-public/system
-public/assets
-public/packs
-public/packs-test
+/coverage
+/public/system
+/public/assets
+/public/packs
+/public/packs-test
 .env
 node_modules/
 build/
@@ -30,7 +30,7 @@ build/
 .vagrant/
 
 # Ignore Capistrano customizations
-config/deploy/*
+/config/deploy/*
 
 # Ignore IDE files
 .vscode/
@@ -38,9 +38,14 @@ config/deploy/*
 .vs/
 
 # Ignore postgres + redis + elasticsearch volume optionally created by docker-compose
-postgres
-redis
-elasticsearch
+/postgres
+/redis
+/elasticsearch
+
+# ignore Helm lockfile, dependency charts, and local values file
+/chart/Chart.lock
+/chart/charts/*.tgz
+/chart/values.yaml
 
 # Ignore Apple files
 .DS_Store
@@ -61,3 +66,6 @@ yarn-debug.log
 
 # Ignore Docker option files
 docker-compose.override.yml
+
+.env.production
+.env.development
