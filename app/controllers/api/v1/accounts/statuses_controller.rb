@@ -33,7 +33,11 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     statuses.merge!(no_reblogs_scope) if truthy_param?(:exclude_reblogs)
     statuses.merge!(hashtag_scope)    if params[:tagged].present?
 
-    statuses.paginate_by_id(limit_param(DEFAULT_STATUSES_LIMIT), params_slice(:max_id, :since_id, :min_id))
+    if !current_user
+        statuses.paginate_by_max_id(10)
+    else
+        statuses.paginate_by_id(limit_param(DEFAULT_STATUSES_LIMIT), params_slice(:max_id, :since_id, :min_id))
+    end
   end
 
   def permitted_account_statuses
