@@ -128,12 +128,12 @@ const resizeImage = (img, type = 'image/png') => new Promise((resolve, reject) =
   const newHeight = Math.round(Math.sqrt(MAX_IMAGE_PIXELS * (height / width)));
 
   getOrientation(img, type)
-    .then(orientation => processImage(img, {
-      width: newWidth,
-      height: newHeight,
-      orientation,
-      type,
-    }))
+//    .then(orientation => processImage(img, {
+//      width: newWidth,
+//      height: newHeight,
+//      orientation,
+//      type,
+//    }))
     .then(resolve)
     .catch(reject);
 });
